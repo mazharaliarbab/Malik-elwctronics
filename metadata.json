@@ -1,0 +1,6 @@
+{
+  "name": "Malik Electronics",
+  "description": "Premium electronics store in Shabqadar, Pakistan. Authorized retailer for refrigerators, air conditioners, fans, washing machines, and televisions at best prices.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

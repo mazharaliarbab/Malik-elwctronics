@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --font-heading: 'Montserrat', 'Poppins', sans-serif;
+  --font-display: 'Montserrat', sans-serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --color-primary-blue: #1E40AF;
+  --color-primary-blue-light: #2563EB;
+  --color-accent-orange: #FF6B35;
+  --color-accent-red: #EF4444;
+  --color-accent-gold: #FBBF24;
+  --color-accent-green: #10B981;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #0f172a;
+  background-color: #f8fafc;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: 'Montserrat', 'Poppins', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Bold Typography theme utility accents */
+.font-display {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.tracking-tightest {
+  letter-spacing: -0.04em;
+}
+
+

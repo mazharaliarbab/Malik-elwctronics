@@ -1,132 +1,75 @@
 import React, { useState } from 'react';
-import { Header } from './components/Header.tsx';
-import { Hero } from './components/Hero.tsx';
-import { CategoryGrid } from './components/CategoryGrid.tsx';
-import { FeaturedProducts } from './components/FeaturedProducts.tsx';
-import { TrustFeatures } from './components/TrustFeatures.tsx';
-import { CustomerReviews } from './components/CustomerReviews.tsx';
-import { LocationSection } from './components/LocationSection.tsx';
-import { StickyContactBar } from './components/StickyContactBar.tsx';
-import { ProductModal } from './components/ProductModal.tsx';
-import { QuoteModal } from './components/QuoteModal.tsx';
-import { Footer } from './components/Footer.tsx';
-import { Product } from './data/electronicsData.ts';
+import { Navbar } from './components/Navbar';
+import { Hero } from './components/Hero';
+import { QuickActionBar } from './components/QuickActionBar';
+import { FeaturedInventory } from './components/FeaturedInventory';
+import { WhyChooseUs } from './components/WhyChooseUs';
+import { AboutUs } from './components/AboutUs';
+import { BuyingProcess } from './components/BuyingProcess';
+import { CustomerExperience } from './components/CustomerExperience';
+import { LocationSection } from './components/LocationSection';
+import { ContactSection } from './components/ContactSection';
+import { Footer } from './components/Footer';
+import { FixedMobileBar } from './components/FixedMobileBar';
+import { CarDetailModal } from './components/CarDetailModal';
+import { Car } from './data/dealershipData';
 
 export default function App() {
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [activeProductModal, setActiveProductModal] = useState<Product | null>(null);
-  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState<boolean>(false);
-  const [quoteCategoryPrefill, setQuoteCategoryPrefill] = useState<string>('');
+  const [selectedCar, setSelectedCar] = useState<Car | null>(null);
 
-  const handleSelectCategory = (categoryId: string) => {
-    setSelectedCategory(categoryId);
-    // Smooth scroll to featured section when a category is selected
-    const el = document.getElementById('featured');
+  const handleScrollToInventory = () => {
+    const el = document.getElementById('inventory');
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleQuickInquire = (categoryName: string) => {
-    setQuoteCategoryPrefill(categoryName);
-    setIsQuoteModalOpen(true);
-  };
-
-  const handleExploreCategories = () => {
-    const el = document.getElementById('categories');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+      const yOffset = -70;
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-slate-900 font-sans selection:bg-blue-100 selection:text-blue-900 pb-16 md:pb-12">
-      {/* Header with Navigation & Live Status */}
-      <Header 
-        onOpenQuote={() => {
-          setQuoteCategoryPrefill('');
-          setIsQuoteModalOpen(true);
-        }}
-        onSelectCategory={handleSelectCategory}
-      />
+    <div className="min-h-screen flex flex-col bg-[#071A3D] text-slate-100 font-sans selection:bg-[#FF8A00] selection:text-[#071A3D] relative pb-16 lg:pb-0">
+      {/* 1. STICKY NAVIGATION BAR */}
+      <Navbar onOpenInventory={handleScrollToInventory} />
 
-      {/* Hero Section:
-          - Bold Headline: "Premium Electronics at Best Prices in Shabqadar" (48-64px)
-          - Direct Contact CTAs: Call Now: 0312 9340205, WhatsApp, Visit Store
-          - Store Hours & Status: "🟢 OPEN - Until 8:00 PM"
-          - Trust Badges: 15+ Years Experience, Authentic Products, Best Prices Guaranteed
-          - Lifestyle appliance showcase with blue-to-dark gradient overlay
-      */}
+      {/* MAIN CONTENT SECTIONS */}
       <main className="flex-1">
-        <Hero 
-          onExploreCategories={handleExploreCategories}
-          onOpenQuote={() => {
-            setQuoteCategoryPrefill('');
-            setIsQuoteModalOpen(true);
-          }}
-        />
+        {/* 2. HERO SECTION */}
+        <Hero onViewCars={handleScrollToInventory} />
 
-        {/* Product Categories - Prominent Grid:
-            Refrigerators | Air Conditioners | Fans | Washing Machines | Televisions
-            Large icons + category names (22-28px bold text)
-            Hover effect with color change
-        */}
-        <CategoryGrid
-          selectedCategory={selectedCategory}
-          onSelectCategory={handleSelectCategory}
-          onQuickInquire={handleQuickInquire}
-        />
+        {/* 3. QUICK ACTION BAR */}
+        <QuickActionBar onViewInventory={handleScrollToInventory} />
 
-        {/* Featured Products:
-            3-4 items (and filterable catalog) with bold pricing in PKR,
-            official warranties, and instant WhatsApp & phone CTAs
-        */}
-        <FeaturedProducts
-          selectedCategory={selectedCategory}
-          onSelectProduct={(product) => setActiveProductModal(product)}
-          onOpenQuote={() => {
-            setQuoteCategoryPrefill('');
-            setIsQuoteModalOpen(true);
-          }}
-        />
+        {/* 4. FEATURED INVENTORY */}
+        <FeaturedInventory onSelectCar={(car) => setSelectedCar(car)} />
 
-        {/* Trust & Social Proof Badges & Authorized Brands */}
-        <TrustFeatures />
+        {/* 5. WHY PREMIUM IMPORTS */}
+        <WhyChooseUs />
 
-        {/* Customer Reviews: ⭐⭐⭐⭐⭐ ratings & bold customer names */}
-        <CustomerReviews />
+        {/* 6. ABOUT PREMIUM IMPORTS */}
+        <AboutUs />
 
-        {/* Location Map Section: Interactive map, store hours, directions */}
+        {/* 7. CAR BUYING PROCESS */}
+        <BuyingProcess />
+
+        {/* 8. CUSTOMER EXPERIENCE (TESTIMONIALS) */}
+        <CustomerExperience />
+
+        {/* 9. LOCATION SECTION */}
         <LocationSection />
+
+        {/* 10. CONTACT SECTION */}
+        <ContactSection />
       </main>
 
-      {/* Footer */}
-      <Footer 
-        onSelectCategory={handleSelectCategory}
-        onOpenQuote={() => {
-          setQuoteCategoryPrefill('');
-          setIsQuoteModalOpen(true);
-        }}
-      />
+      {/* 12. FOOTER */}
+      <Footer />
 
-      {/* WhatsApp + Phone Quick Contact Bar (Sticky at bottom) */}
-      <StickyContactBar />
+      {/* 11. FIXED MOBILE ACTION BUTTONS (MOBILE ONLY) */}
+      <FixedMobileBar />
 
-      {/* Product Detail Modal */}
-      {activeProductModal && (
-        <ProductModal 
-          product={activeProductModal}
-          onClose={() => setActiveProductModal(null)}
-        />
-      )}
-
-      {/* Price Quote / Custom Package Modal */}
-      {isQuoteModalOpen && (
-        <QuoteModal
-          isOpen={isQuoteModalOpen}
-          onClose={() => setIsQuoteModalOpen(false)}
-          prefillCategory={quoteCategoryPrefill}
-        />
+      {/* VEHICLE SPECIFICATION MODAL */}
+      {selectedCar && (
+        <CarDetailModal car={selectedCar} onClose={() => setSelectedCar(null)} />
       )}
     </div>
   );

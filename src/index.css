@@ -1,15 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  --font-heading: 'Montserrat', 'Poppins', sans-serif;
+  --font-script: 'Great Vibes', 'Playball', cursive;
+  --font-heading: 'Outfit', 'Montserrat', sans-serif;
   --font-display: 'Montserrat', sans-serif;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --color-primary-blue: #1E40AF;
-  --color-primary-blue-light: #2563EB;
-  --color-accent-orange: #FF6B35;
-  --color-accent-red: #EF4444;
-  --color-accent-gold: #FBBF24;
-  --color-accent-green: #10B981;
+  
+  --color-brand-navy: #071A3D;
+  --color-brand-navy-dark: #040E24;
+  --color-brand-navy-surface: #0B224E;
+  --color-brand-navy-card: #0F2A61;
+  --color-brand-purple: #7B61C9;
+  --color-brand-orange: #FF8A00;
+  --color-brand-orange-hover: #E67A00;
 }
 
 html {
@@ -18,24 +21,66 @@ html {
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  color: #0f172a;
-  background-color: #f8fafc;
+  color: #f1f5f9;
+  background-color: #071A3D;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6, .font-heading {
-  font-family: 'Montserrat', 'Poppins', sans-serif;
+  font-family: 'Outfit', 'Montserrat', sans-serif;
   letter-spacing: -0.02em;
 }
 
-/* Bold Typography theme utility accents */
+.font-script {
+  font-family: 'Great Vibes', 'Playball', cursive;
+}
+
 .font-display {
   font-family: 'Montserrat', sans-serif;
 }
 
-.tracking-tightest {
-  letter-spacing: -0.04em;
+/* Glassmorphism and Luxury Glow Effects */
+.glass-panel {
+  background: rgba(11, 34, 78, 0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card {
+  background: linear-gradient(135deg, rgba(15, 42, 97, 0.6) 0%, rgba(7, 26, 61, 0.8) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 138, 0, 0.35);
+}
+
+.glow-orange {
+  box-shadow: 0 0 25px rgba(255, 138, 0, 0.35);
+}
+
+.glow-purple {
+  box-shadow: 0 0 25px rgba(123, 97, 201, 0.35);
+}
+
+/* Custom scrollbar for modern dark feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #040E24;
+}
+::-webkit-scrollbar-thumb {
+  background: #1B356B;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF8A00;
 }
 
 
